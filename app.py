@@ -7,8 +7,8 @@ from charts import (
     chart_order_status, chart_delivery_performance
 )
 
-st.set_page_config(page_title="Ecommerce Sales Analysis Dashboard", layout="wide")
-st.title("Ecommerce Sales Analysis Dashboard", text_alignment="center")
+st.set_page_config(page_title="Ecommerce Analysis Dashboard", layout="wide")
+st.title("Ecommerce Analysis Dashboard", text_alignment="center")
 
 kpis = load_kpis()
 col1, col2, col3, col4 = st.columns(4)
@@ -45,11 +45,14 @@ with tab2:
         st.plotly_chart(chart_payment_types(df))
 
 with tab3:
-    df = load_view("Top_Seller_States_View")
-    st.plotly_chart(chart_seller_state_revenue(df))
+    col1, col2 = st.columns(2)
+    with col1:
+        df = load_view("Top_Seller_States_View")
+        st.plotly_chart(chart_seller_state_revenue(df))
 
-    df = load_view("Customer_State_Distribution_View")
-    st.plotly_chart(chart_customer_state_distribution(df))
+    with col2:
+        df = load_view("Customer_State_Distribution_View")
+        st.plotly_chart(chart_customer_state_distribution(df))
 
 with tab4:
     col1, col2 = st.columns(2)
